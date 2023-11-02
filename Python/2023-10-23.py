@@ -52,15 +52,48 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     where generated power = voltage * current
     """
     generated_power = voltage * current
+    # way 1
     pct = (generated_power / theoretical_max_power) * 100
-    
-    if pct < 0.3:
+    if pct < 30:
         return "black"
-    elif pct < 0.6:
-        return "orange"
-    elif pct < 0.8:
+    elif pct < 60:
         return "red"
+    elif pct < 80:
+        return "orange"
     else:
-        return "green"    
+        return "green"  
+    # way 2
+    # pct = (generated_power / theoretical_max_power)
+    # if pct < 0.3:
+    #     return "black"
+    # elif pct < 0.6:
+    #     return "red"
+    # elif pct < 0.8:
+    #     return "orange"
+    # else:
+    #     return "green"    
 print(reactor_efficiency(200,50,15000))
 print(reactor_efficiency(10, 299, 10000))
+
+def fail_safe(temperature, neutrons_produced_per_second, threshold):
+    """Assess and return status code for the reactor.
+
+    :param temperature: int or float - value of the temperature in kelvin.
+    :param neutrons_produced_per_second: int or float - neutron flux.
+    :param threshold: int or float - threshold for category.
+    :return: str - one of ('LOW', 'NORMAL', 'DANGER').
+
+    1. 'LOW' -> `temperature * neutrons per second` < 90% of `threshold`
+    2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
+    3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
+    """
+    value = temperature * neutrons_produced_per_second
+
+    if value < (0.9 * threshold):
+        return "LOW"
+    elif value < (1.1 * threshold) or (0.9 * threshold) > value:
+        return "NORMAL"
+    else:
+        return "DANGER"
+    
+print(fail_safe(temperature=1000, neutrons_produced_per_second=30, threshold=5000)) # 'DANGER'
