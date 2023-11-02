@@ -1,3 +1,3 @@
 # Practice
 
-`Julia`, `Python` 코딩연습
+`R`, `Python` 코딩연습
