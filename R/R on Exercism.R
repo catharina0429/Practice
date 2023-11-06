@@ -34,7 +34,18 @@ leap <- function(year) {
     return(FALSE)
   }
 }
-leap(1990)
-leap(2000)
-leap(1996)
-leap(1997)
+leap(1990) # FALSE
+leap(2000) # TRUE
+leap(1996) # TRUE
+leap(1997) # FALSE
+leap(2024) # TRUE
+
+## Darts ====
+score <- function(x, y) {
+  dist <- sqrt((x^2) + (y^2))
+  ifelse(dist > 10, 0, 
+         ifelse(dist > 5, 1,
+                ifelse(dist > 1, 5, 10)))
+}
+score(0, 0)
+score(-3.6, 3.6)
