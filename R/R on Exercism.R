@@ -67,3 +67,21 @@ raindrops(1)
 raindrops(21)
 raindrops(35) # PlangPlong
 raindrops(105) # PlingPlangPlong
+
+## Hamming =====
+# This is a stub function to take two strings
+# and calculate the hamming distance
+hamming <- function(strand1, strand2) {
+  if( nchar(strand1) != nchar(strand2)){
+    stop("different length!")}
+  else(
+    sum(unlist(lapply(strsplit(strand1, NULL), rev)) != unlist(lapply(strsplit(strand2, NULL), rev))))
+}
+s1 <- "GATACA"; s2 <- "GCATAA"
+hamming(s1, s2)
+
+s1 <- "" ;s2 <- ""
+hamming(s1, s2)
+
+s1 <- "ATA"; s2 <- "AGTG"
+hamming(s1, s2) # halted
