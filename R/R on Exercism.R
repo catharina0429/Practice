@@ -49,3 +49,21 @@ score <- function(x, y) {
 }
 score(0, 0)
 score(-3.6, 3.6)
+
+
+## Raindrops ====
+raindrops <- function(number) {
+  ifelse( number == 1, as.character(number), 
+          ifelse( (number %% 3 == 0 & number %% 5 == 0 & number %% 7 == 0), "PlingPlangPlong", 
+                  ifelse((number %% 3 == 0 & number %% 5 == 0), "PlingPlang", 
+                         ifelse( (number %% 3 == 0 & number %% 7 == 0 ), "PlingPlong", 
+                                 ifelse( (number %% 5 == 0 & number %% 7 == 0), "PlangPlong", 
+                                         ifelse(number %% 3 == 0, "Pling", 
+                                                ifelse(number %% 5 == 0, "Plang",
+                                                       ifelse(number %% 7 == 0, "Plong", 
+                                                              as.character(number)))))))))
+}
+raindrops(1)
+raindrops(21)
+raindrops(35) # PlangPlong
+raindrops(105) # PlingPlangPlong
