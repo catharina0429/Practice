@@ -15,11 +15,15 @@ print(convert(49))
 print(convert(52))
 print(convert(105))
 
-"""strings"""
+"""strings practice"""
 def add_prefix_un(word):
-    return 'un' + word
-print(add_prefix_un("happy"))
-print(add_prefix_un("manageable"))
+    """Take the given word and add the 'un' prefix.
+
+    :param word: str - containing the root word.
+    :return: str - of root word prepended with 'un'.
+    """
+    return "un" + word
+
 
 def make_word_groups(vocab_words):
     """Transform a list containing a prefix and words into a string with the prefix followed by the words with prefix prepended.
@@ -36,8 +40,32 @@ def make_word_groups(vocab_words):
     produces the following string: 'en :: enclose :: enjoy :: enlighten'.
     """
     prefix = vocab_words[0]
-    res = []
-    res = add_prefix_un(vocab_words[1:-1])
-    res.append(prefix)
-    return res
-print(make_word_groups['en', 'close', 'joy', 'lighten'])
+    tmp = [prefix + i for i in vocab_words[1:]]
+    tmp.insert(0, prefix)
+    return " :: ".join(tmp)
+
+def remove_suffix_ness(word):
+    """Remove the suffix from the word while keeping spelling in mind.
+
+    :param word: str - of word to remove suffix from.
+    :return: str - of word with suffix removed & spelling adjusted.
+
+    For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
+    """
+    if word[-5:] == "iness":
+        return word[:len(word)-5] + "y"
+    return word[:-4]  
+
+def adjective_to_verb(sentence, index):
+    """Change the adjective within the sentence to a verb.
+
+    :param sentence: str - that uses the word in sentence.
+    :param index: int - index of the word to remove and transform.
+    :return: str - word that changes the extracted adjective to a verb.
+
+    For example, ("It got dark as the sun set.", 2) becomes "darken".
+    """
+    tmp = sentence.split()[index]
+    if tmp[-1] == ".":
+        return tmp[:len(tmp)-1] + "en"
+    return tmp + "en"
