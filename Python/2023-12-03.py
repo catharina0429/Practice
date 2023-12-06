@@ -69,3 +69,9 @@ def adjective_to_verb(sentence, index):
     if tmp[-1] == ".":
         return tmp[:len(tmp)-1] + "en"
     return tmp + "en"
+
+def reverse(text):
+    return text[::-1]
+
+tmp = "Hello world!"
+reverse(tmp)
