@@ -85,3 +85,14 @@ hamming(s1, s2)
 
 s1 <- "ATA"; s2 <- "AGTG"
 hamming(s1, s2) # halted
+
+### Grains ====
+square <- function(n) {
+  if (! n %in% c(1:64)){
+    stop("Invalid input!")
+  } 
+  2^(n-1)
+}
+square(1)
+square(65)
+square(-1)
