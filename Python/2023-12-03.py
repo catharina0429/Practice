@@ -75,3 +75,15 @@ def reverse(text):
 
 tmp = "Hello world!"
 reverse(tmp)
+
+"""Grains"""
+def square(number):
+    if number in range(1, 65):
+        return 2 ** (number -1)
+    raise ValueError("Invalid Input! it must be between 1 and 64")
+
+def total():
+    total = 0
+    for i in range(1, 65):
+        total = total + square(i)
+    return total
